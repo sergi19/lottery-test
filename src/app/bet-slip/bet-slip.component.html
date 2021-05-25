@@ -1,0 +1,33 @@
+<div class="bet-slip-container">
+    <div class="balls-selected flex-center">
+        <div 
+            *ngFor="let ball of ballsSelectedArray; let i = index" 
+            class="ball flex-center"
+            [ngStyle]="{'background-color': ball.backgroundColor ? ball.backgroundColor : '', 'cursor': ball.value && !gameLaunched ? 'pointer' : 'default'}" 
+            (click)="removeBall(i)">
+            <span *ngIf="ball">{{ball.value}}</span>
+        </div>
+    </div>
+
+    <div class="info-values-bet flex-center">
+        <div class="wrapper-input-stake">
+            <div class="input-stake">
+                <div class="profit-value flex-center">{{winPerBet}}x</div>
+                <input type="number" [(ngModel)]="betValue" placeholder="Enter your bet">
+            </div>
+            <button (click)="calculatePossibleProfit()">Ok</button>
+        </div>
+        <div class="wrapper-possible-profit flex-center">
+            <span>Bet profit: {{possibleProfit}} €</span>
+        </div>
+    </div>
+
+
+    <div class="place-bet">
+        <div class="total-value-bet flex-center">
+            <span>Total: {{totalProfit}} €</span>
+        </div>
+        <button (click)="placeBet()">Place bet</button>
+    </div>
+
+</div>

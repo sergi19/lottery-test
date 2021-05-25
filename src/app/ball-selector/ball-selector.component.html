@@ -1,0 +1,26 @@
+<div class="ball-selector-container flex-center">
+    <div *ngIf="finalResult" class="close" (click)="clearSelection()">x</div>
+    <div *ngIf="!finalResult" class="selection-container">
+        <div id="title-numbers">
+            <label>Numbers</label>
+            <div class="flex-center">
+                <div 
+                    *ngFor="let ball of ballsArray" 
+                    [ngStyle]="{'background-color': ball.backgroundColor}" 
+                    class="ball flex-center"
+                    (click)="selectBall(ball)">
+                    <p>{{ball.value}}</p>
+                </div>
+            </div>
+        </div>
+        <span (click)="clearSelection()">Clear selection</span>
+    </div>
+
+    <div *ngIf="finalResult" class="result-container flex-center">
+        <label>Result</label>
+        <div [ngStyle]="{'background-color': winningBall.backgroundColor}" class="ball flex-center">
+            {{winningBall.value}}
+        </div>
+        <span [ngClass]="{'victory-text': finalResult.victory, 'defeat-text': !finalResult.victory}">{{finalResult.text}}</span>
+    </div>
+</div>
